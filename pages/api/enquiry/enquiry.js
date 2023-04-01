@@ -16,6 +16,7 @@ const handler = async (req, res) => {
   if (req.method == "POST") {
     try {
       const {
+        tripId = "",
         name = "",
         email = "",
         phoneNo = "",
@@ -23,6 +24,9 @@ const handler = async (req, res) => {
         travellerCount = "",
         message = "",
       } = req.body;
+      if (tripId.length == 0) {
+        return res.status(400).json({ message: "Invalid Name" });
+      }
       if (name.length == 0) {
         return res.status(400).json({ message: "Invalid Name" });
       }
@@ -45,6 +49,7 @@ const handler = async (req, res) => {
       await dbConnect();
 
       await Enquiry.create({
+        tripId,
         name,
         email,
         phoneNo,

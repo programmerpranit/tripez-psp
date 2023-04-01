@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const EnquirySchema = new mongoose.Schema(
   {
+    tripId: {type:String},
     name: { type: String, required: true },
     email: {
       type: String,
