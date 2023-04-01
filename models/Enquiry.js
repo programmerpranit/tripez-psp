@@ -1,9 +1,20 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-main().catch(err => console.log(err));
+const EnquirySchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    email: {
+      type: String,
+      lowercase: true,
+      required: true,
+    },
+    phoneNo: { type: Number, required: true },
+    dateOfTravel: { type: Number, required: true },
+    travellerCount: { type: Number, required: true },
+    message: { type: String, required: true },
+  },
+  { timestamps: true }
+);
+mongoose.models = {};
 
-async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/test');
-
-  // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
-}
+export default mongoose.model("Enquiry", EnquirySchema);
