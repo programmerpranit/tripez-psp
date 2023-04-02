@@ -30,12 +30,14 @@ const handler = async (req, res) => {
       const pass = bytes.toString(enc.Utf8);
 
       if (pass == password) {
-        const token = sign({ user }, process.env.user_SEC, {
+        const token = sign({ user }, process.env.USER_SEC, {
           expiresIn: "10d",
         });
         return res
           .status(200)
           .json({ message: "Successfully Logged In", token });
+      } else {
+        return res.status(401).json({ message: "wrong password" });
       }
     } catch (error) {
       console.log(error);
