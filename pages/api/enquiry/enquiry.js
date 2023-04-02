@@ -1,16 +1,6 @@
 import Enquiry from "../../../models/Enquiry";
 import dbConnect from "../../../middleware/mongoose";
 import { isValidEmail } from "../../../helpers/validations";
-// name: { type: String, required: true },
-//     email: {
-//       type: String,
-//       lowercase: true,
-//       required: true,
-//     },
-//     phoneNo: { type: Number, required: true },
-//     dateOfTravel: { type: Date, required: true },
-//     travellerCount: { type: true, required: true },
-//     message: { type: String, required: true },
 
 const handler = async (req, res) => {
   if (req.method == "POST") {
