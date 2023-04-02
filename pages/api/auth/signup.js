@@ -24,8 +24,8 @@ const handler = async (req, res) => {
         if(user){
             return res.status(400).send({message:"User already Exists"})
         }
-  
-        const pass = AES.encrypt(password, process.env.USER_SEC).toString();
+          ///  process.env.USER_SEC
+        const pass = AES.encrypt(password,"mysecret123").toString();
   
         await dbConnect();
   

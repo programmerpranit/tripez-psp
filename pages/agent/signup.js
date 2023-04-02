@@ -1,51 +1,61 @@
 import Link from "next/link";
+import { useState } from "react";
+import { BASE_URL } from "@/utils/config";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import Cookies from "universal-cookie";
 
 export default function signup() {
+
+   
+  const [name, setname] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleLogin = async (e) => {
+    e.preventDefault()
+
+  }
+
   return (
-    <div className="w-screen h-screen bg-img flex items-center justify-center">
+    <section className="bg-gray-50 dark:bg-gray-900 sm:h-screen">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <a className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+          TRIPEZ
+        </a>
+        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
 
-      <div className="w-1/3 border-2 rounded-lg backdrop-blur-[2px]">
-        <div className="text-white p-4 text-xl font-semibold">
-          <h1 className="text-center text-2xl my-2">Hello Welcome to TRIPEZ</h1>
-          <p className="font-normal text-center">Already have a Account ?<Link href='/agent/login' className="underline m-2">Login</Link></p>
-          <form className="">
+            <form className="space-y-4 md:space-y-6" onSubmit={handleLogin} >
 
-            <div className='flex flex-col py-2'>
-              <label className='py-2 font-medium' htmlFor="name">Name</label>
-              <input
-                id="name"
-                className='border rounded-lg p-2 text-black'
-                type='text'
-              />
-            </div>
+            <div>
+                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                <input onChange={(e) => { setname(e.target.value) }} value={name} type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
+                </input>
+              </div>
 
-            <div className='flex flex-col py-2'>
-              <label className='py-2 font-medium' htmlFor="email">Email Address</label>
-              <input
-                id="email"
-                className='border rounded-lg p-2 text-black'
-                type='email'
-              />
-            </div>
-
-            <div className='flex flex-col py-2'>
-              <label className='py-2 font-medium' htmlFor="password">Password</label>
-              <input
-                id="password"
-                className='border rounded-lg p-2 text-black'
-                type='password'
-              />
-            </div>
-
-            <div className='flex flex-col py-2'>
-              <button className='border rounded-lg border-white bg-cyan-600 hover:bg-cyan-500 w-full p-4 my-2 text-white'>
-                Sign Up
-              </button>
-            </div>
-            
-          </form>
+              <div>
+                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                <input onChange={(e) => { setEmail(e.target.value) }} value={email} type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
+                </input>
+              </div>
+              <div>
+                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                <input onChange={(e) => { setPassword(e.target.value) }} value={password} type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                </input>
+              </div>
+              <div className="flex items-center justify-between">
+                <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
+              </div>
+              <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Login</button>
+              <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                Already have an account ? <Link href='/agent/login' className="font-medium text-primary-600 hover:underline dark:text-primary-500">Login</Link>
+              </p>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
