@@ -1,12 +1,47 @@
 import Link from "next/link";
-import { useState } from "react";
+import { BASE_URL } from "@/utils/config";
+import axios from "axios";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import Cookies from "universal-cookie";
 
-export default function login() {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
 
+  const cookies = new Cookies();
+
+  const router = useRouter();
+
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    if (email.length == 0) return;
+    if (password.length == 0) return;
+
+    try {
+      const url = `${BASE_URL}/api/auth/login`;
+      const data = {
+        email,
+        password,
+      };
+      const res = await axios.post(url, data);
+
+      if (res.status == 200) {
+        localStorage.setItem("token", res.data.token);
+        cookies.set("authorization", res.data.token, { path: "/" });
+        toast.success(res.data.message);
+        router.push("/admin");
+      }
+    } catch (error) {
+      console.log(error);
+      if (error?.response?.data?.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Unknown Error Occured");
+      }
+    }
   };
 
   return (
@@ -20,7 +55,10 @@ export default function login() {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Login to your account
             </h1>
-            <form className="space-y-4 md:space-y-6" onSubmit={handleLogin}>
+            <form
+              className="space-y-4 md:space-y-6"
+              onSubmit={(e) => handleLogin(e)}
+            >
               <div>
                 <label
                   htmlFor="email"
@@ -34,8 +72,6 @@ export default function login() {
                   }}
                   value={email}
                   type="email"
-                  name="email"
-                  id="email"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="name@company.com"
                   required=""
@@ -54,8 +90,6 @@ export default function login() {
                   }}
                   value={password}
                   type="password"
-                  name="password"
-                  id="password"
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required=""
@@ -69,7 +103,7 @@ export default function login() {
                 Login
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Don’t have an account yet?{" "}
+                Dont have an account yet?{" "}
                 <Link
                   href="/agent/signup"
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"

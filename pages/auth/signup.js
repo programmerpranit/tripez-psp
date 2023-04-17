@@ -1,16 +1,41 @@
 import Link from "next/link";
-import { useState } from "react";
+import { BASE_URL } from "@/utils/config";
 import axios from "axios";
-import { useRouter } from "next/router";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 
-export default function signup() {
+export default function Signup() {
   const [name, setname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
+
+    if (email.length == 0) return;
+    if (password.length == 0) return;
+
+    try {
+      const url = `${BASE_URL}/api/auth/signup`;
+      const data = {
+        name,
+        email,
+        password,
+      };
+      const res = await axios.post(url, data);
+
+      if (res.status == 200) {
+        toast.success(res.data.message);
+      }
+    } catch (error) {
+      if (error?.response?.data?.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Unknown Error Occured");
+      }
+    }
   };
+
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900 sm:h-screen">
@@ -20,7 +45,7 @@ export default function signup() {
         </a>
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <form className="space-y-4 md:space-y-6" onSubmit={handleLogin}>
+            <form className="space-y-4 md:space-y-6" onSubmit={(e) => handleSignUp(e)}>
               <div>
                 <label
                   htmlFor="email"
