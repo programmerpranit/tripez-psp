@@ -26,11 +26,11 @@ const handler = async (req, res) => {
       if (!partner.verified) {
         return res.status(400).json({ message: "Email is not verified" });
       }
-      const bytes = AES.decrypt(admin.password, process.env.PASS_SEC);
+      const bytes = AES.decrypt(partner.password, process.env.PASS_SEC);
       const pass = bytes.toString(enc.Utf8);
 
       if (pass == password) {
-        const token = sign({ admin }, process.env.PARTNER_SEC, {
+        const token = sign({ partner }, process.env.PARTNER_SEC, {
           expiresIn: "10d",
         });
         return res
