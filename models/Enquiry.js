@@ -2,17 +2,14 @@ const mongoose = require("mongoose");
 
 const EnquirySchema = new mongoose.Schema(
   {
-    tripId: {type:String},
+    trip: { type: String, required: true },
+    host: { type: String, required: true },
     name: { type: String, required: true },
-    email: {
-      type: String,
-      lowercase: true,
-      required: true,
-    },
-    phoneNo: { type: Number, required: true },
-    dateOfTravel: { type: Number, required: true },
+    email: { type: String, required: true },
+    phoneNo: { type: String, required: true },
+    dateOfTravel: { type: String, required: true },
     travellerCount: { type: Number, required: true },
-    message: { type: String, required: true },
+    message: { type: String, default: "" },
   },
   { timestamps: true }
 );

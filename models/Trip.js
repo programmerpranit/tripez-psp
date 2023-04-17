@@ -1,29 +1,35 @@
-const mongoose = require('mongoose')
-const TripSchema = new mongoose.Schema(
-    {
-        partnerId: { type: String },
-        tripDuration: { type: String, required: true },
-        tripLocation: { type: String, required: true },
-        tripCost: { type: String, required: true },
-        tripHighlishts: { type: Array, required: true },
-        tripOverview: {
-            checkIn: String,
-            checkOut: String,
-            resortLoc: String,
-            about: String,
-            roomCategories: {
-                title: String,
-                desc: String,
-            },
-            inclusions: String,
-            facilities: {
-                title: String,
-                desc: String,
-            },
-        },
-    },
-    { timestamps: true }
-)
-mongoose.models = {}
+import mongoose from "mongoose";
 
-export default mongoose.model('Trip', TripSchema)
+const TripSchema = new mongoose.Schema(
+  {
+    host: {
+      type: String,
+      required: true,
+    },
+    name: { type: String, required: true },
+    description: { type: String, required: true },
+    departure: { type: String, required: true },
+    days: { type: Number, required: true },
+    nights: { type: Number, required: true },
+    amount: { type: Number, required: true },
+    highlights: [{ type: String }],
+    features: [{ type: String }],
+    itirnary: {
+      type: String,
+      required: true,
+    },
+    faq: [
+      {
+        question: String,
+        answer: String,
+      },
+    ],
+    featuredImage: { type: String, required: true },
+    images: [{ type: String, required: true }],
+  },
+  { timestamps: true }
+);
+
+mongoose.models = {};
+
+export default mongoose.model("Trip", TripSchema);
