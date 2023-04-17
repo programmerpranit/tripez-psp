@@ -30,7 +30,7 @@ const handler = async (req, res) => {
       const pass = bytes.toString(enc.Utf8);
 
       if (pass == password) {
-        const token = sign({ admin }, process.env.JWT_SEC, {
+        const token = sign({ admin }, process.env.PARTNER_SEC, {
           expiresIn: "10d",
         });
         return res
