@@ -18,7 +18,7 @@ export async function middleware(req) {
 
     var partner = await jwtVerify(token.value, sec);
 
-    if (partner.payload.admin.verified) {
+    if (partner.payload.partner.verified) {
       // req.admin = admin;
       return NextResponse.next();
     }
