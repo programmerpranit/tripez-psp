@@ -1,8 +1,8 @@
-import dbConnect from "../../../middleware/mongoose";
-import { enc, AES } from "crypto-js";
-import User from "../../../models/User";
+import { isValidEmail } from "@/helpers/validations";
 import { sign } from "jsonwebtoken";
-import { isValidEmail } from "../../../helpers/validations";
+import { enc, AES } from "crypto-js";
+import dbConnect from "@/middleware/mongo";
+import Partner from "@/models/Partner";
 
 const handler = async (req, res) => {
   if (req.method == "POST") {
@@ -15,22 +15,22 @@ const handler = async (req, res) => {
 
       await dbConnect();
 
-      const user = await User.findOne({ email: email });
+      const partner = await Partner.findOne({ email: email });
 
-      if (!user) {
+      if (!partner) {
         return res
           .status(400)
           .json({ message: "No user found with given email" });
       }
 
-      if (!user.verified) {
+      if (!partner.verified) {
         return res.status(400).json({ message: "Email is not verified" });
       }
-      const bytes = AES.decrypt(user.password, process.env.USER_SEC);
+      const bytes = AES.decrypt(admin.password, process.env.PASS_SEC);
       const pass = bytes.toString(enc.Utf8);
 
       if (pass == password) {
-        const token = sign({ user }, process.env.USER_SEC, {
+        const token = sign({ admin }, process.env.JWT_SEC, {
           expiresIn: "10d",
         });
         return res
