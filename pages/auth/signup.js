@@ -24,7 +24,7 @@ export default function Signup() {
       };
       const res = await axios.post(url, data);
 
-      if (res.status == 200) {
+      if (res.status == 201) {
         toast.success(res.data.message);
       }
     } catch (error) {
