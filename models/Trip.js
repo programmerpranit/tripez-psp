@@ -7,6 +7,7 @@ const TripSchema = new mongoose.Schema(
       required: true,
     },
     name: { type: String, required: true },
+    slug: { type: String, required: true },
     description: { type: String, required: true },
     departure: { type: String, required: true },
     days: { type: Number, required: true },
@@ -16,7 +17,6 @@ const TripSchema = new mongoose.Schema(
     features: [{ type: String }],
     itirnary: {
       type: String,
-      required: true,
     },
     faq: [
       {

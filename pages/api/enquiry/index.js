@@ -1,6 +1,6 @@
-import Enquiry from "../../../models/Enquiry";
-import dbConnect from "../../../middleware/mongoose";
-import { isValidEmail } from "../../../helpers/validations";
+import Enquiry from "@/models/Enquiry";
+import dbConnect from "@/middleware/mongoose";
+import { isValidEmail } from "@/helpers/validations";
 
 const handler = async (req, res) => {
   if (req.method == "POST") {
