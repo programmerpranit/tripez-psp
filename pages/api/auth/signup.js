@@ -1,6 +1,5 @@
 import { isValidEmail } from "@/helpers/validations";
-import dbConnect from "@/middleware/mongo";
-import Admin from "@/models/Admin";
+import dbConnect from "@/middleware/mongoose";
 import Partner from "@/models/Partner";
 import { enc, AES } from "crypto-js";
 

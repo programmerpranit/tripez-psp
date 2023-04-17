@@ -1,8 +1,8 @@
 import { isValidEmail } from "@/helpers/validations";
 import { sign } from "jsonwebtoken";
 import { enc, AES } from "crypto-js";
-import dbConnect from "@/middleware/mongo";
 import Partner from "@/models/Partner";
+import dbConnect from "@/middleware/mongoose";
 
 const handler = async (req, res) => {
   if (req.method == "POST") {
