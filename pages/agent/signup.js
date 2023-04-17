@@ -1,10 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
-import { BASE_URL } from "@/utils/config";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { toast } from "react-toastify";
-import Cookies from "universal-cookie";
 
 export default function signup() {
 
