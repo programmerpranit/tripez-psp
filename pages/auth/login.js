@@ -32,7 +32,7 @@ export default function Login() {
         localStorage.setItem("token", res.data.token);
         cookies.set("authorization", res.data.token, { path: "/" });
         toast.success(res.data.message);
-        router.push("/admin");
+        router.push("/partner");
       }
     } catch (error) {
       console.log(error);
