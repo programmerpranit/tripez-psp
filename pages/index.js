@@ -30,22 +30,18 @@ export default function Home() {
       <div className="flex  bg-[url('/himalaya.jpg')] flex-col h-screen justify-between">
         <Navbar login={true} signup={true} />
         <div className="flex text-3xl text-green-200 items-center justify-center">
-        <Typewriter
-          className=" font-extrabold "
-          onInit={(typewriter) => {
-            typewriter
-              .typeString(`Make your trip Fun`)
-              .pauseFor(2000)
-              .deleteChars(3)
-              .typeString("Exciting")
-              .start();
-              
-              
-          }}
-        />
+          <Typewriter
+            className=" font-extrabold "
+            onInit={(typewriter) => {
+              typewriter
+                .typeString(`Make your trip Fun`)
+                .pauseFor(2000)
+                .deleteChars(3)
+                .typeString("Exciting")
+                .start();
+            }}
+          />
         </div>
-        
-        
 
         <div className="flex flex-row items-center justify-center">
           {data.map((item) => {
