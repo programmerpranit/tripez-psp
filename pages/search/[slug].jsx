@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
+import { useRouter } from "next/router";
+import Trip from "@/components/Trip";
 
-export default function Search() {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+const Search = () => {
+  const router = useRouter();
+  const { slug } = router.query;
+
+  return <div></div>;
+};
+export default Search;

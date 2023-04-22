@@ -4,8 +4,10 @@ import Card from "@/components/Card";
 import styles from "../styles/Home.module.css";
 import Navbar from "../components/Navbar";
 import Typewriter from "typewriter-effect";
-
-//
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import Link from "next/link";
 const data = [
   {
     title: "The Himalayas",
@@ -25,10 +27,36 @@ const data = [
 ];
 
 export default function Home() {
+  const [search, setSearch] = useState("");
+
+  const handleChange = (e) => {
+    setSearch({
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <>
-      <div className="flex  bg-[url('/himalaya.jpg')] flex-col h-screen justify-between">
+      <div className="flex  bg-[url('/himalaya.jpg')] min-h-screen  flex-col h-screen justify-between">
         <Navbar login={true} signup={true} />
+
+        <div className="flex items-center justify-center">
+          <input
+            type="text"
+            placeholder="Search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="bg-transparent text-white border-2 rounded-lg p-2 m-2 w-1/2"
+          />
+          <Link href={`/search/${search}`}>
+            <Image
+              src="/SearchIcon.svg"
+              width="30"
+              height="30"
+              className="cursor-pointer"
+            />
+          </Link>
+        </div>
         <div className="flex text-3xl text-green-200 items-center justify-center">
           <Typewriter
             className=" font-extrabold "
@@ -43,7 +71,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="flex flex-row items-center justify-center">
+        <div className="flex items-center justify-center">
           {data.map((item) => {
             return (
               <Card

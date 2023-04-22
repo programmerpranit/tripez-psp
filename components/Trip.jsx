@@ -6,23 +6,23 @@ export default function Trip(props) {
   const [host, sethost] = useState("");
 
   return (
-    <div className="h-screen flex m-10 flex-col md:flex-row">
+    <div className=" flex m-10 flex-col md:flex-row max-w-[1000px] mx-auto">
       <div className="md:w-2/3">
-        <h1 className="font-bold text-2xl md:text-5xl">{props.name}</h1>
+        <h1 className="font-bold text-2xl ">{props.name}</h1>
         <img
           className="mt-4 md:mt-8 md:w-3/4  rounded-md"
           src={props.imgUrl}
           alt="img"
         />
-        <p className="mt-4 md:mt-8 w-3/3 text-xl md:text-2xl">{props.desc}</p>
+        <p className="mt-4 md:mt-8 w-3/3 w-2/3 ">{props.desc}</p>
       </div>
 
-      <div className="h-screen mt-10 md:mt-0 md:w-1/3 p-3 text-xl md:text-2xl border border-red-300">
+      <div className=" mt-10 md:mt-0 md:w-1/3 p-3 text-xl border border-red-300">
         <h1 className="text-center text-2xl md:text-3xl">Enquiry Form</h1>
         <form>
           <div>
             <label htmlFor="trip" className="block mb-1">
-              trip
+              Trip
             </label>
             <input
               onChange={(e) => {
@@ -37,7 +37,7 @@ export default function Trip(props) {
 
           <div>
             <label htmlFor="host" className="block mb-1">
-              host
+              Host
             </label>
             <input
               onChange={(e) => {
@@ -52,7 +52,7 @@ export default function Trip(props) {
 
           <div>
             <label htmlFor="name" className="block mb-1">
-              name
+              Name
             </label>
             <input
               onChange={(e) => {
@@ -67,7 +67,7 @@ export default function Trip(props) {
 
           <div>
             <label htmlFor="email" className="block mb-1">
-              email
+              Email
             </label>
             <input
               onChange={(e) => {
@@ -82,14 +82,14 @@ export default function Trip(props) {
 
           <div>
             <label htmlFor="phoneNo" className="block mb-1">
-              phoneNo
+              Phone Number
             </label>
             <input
               onChange={(e) => {
                 setState(e.target.value);
               }}
               id="phoneNo"
-              type="text"
+              type="number"
               className="border border-slate-400 rounded-lg block w-full p-1"
               required=""
             ></input>
@@ -97,7 +97,7 @@ export default function Trip(props) {
 
           <div>
             <label htmlFor="dateOfTravel" className="block mb-1">
-              dateOfTravel
+             Date of Travel
             </label>
             <input
               onChange={(e) => {
@@ -112,7 +112,7 @@ export default function Trip(props) {
 
           <div>
             <label htmlFor="travellerCount" className="block mb-1">
-              travellerCount
+              Traveller Count
             </label>
             <input
               onChange={(e) => {
@@ -127,7 +127,7 @@ export default function Trip(props) {
 
           <div>
             <label htmlFor="message" className="block mb-1">
-              message
+              Message
             </label>
             <input
               onChange={(e) => {
@@ -143,8 +143,8 @@ export default function Trip(props) {
           <div>
             <button
               type="submit"
-              className="w-full mt-4 mb-2 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-            >
+              className={'w-full p-2 my-5 text-white rounded bg-blue-500'}
+              >
               Submit
             </button>
           </div>

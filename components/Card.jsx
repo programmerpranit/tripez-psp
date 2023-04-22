@@ -17,7 +17,7 @@ export default function Card( props ) {
           </p>
           <Link href={'/search/himalaya'} >
           <button className="bg-white p-2 rounded-md text-black hover:bg-gray-300 cursor-pointer mt-2 font-semibold">
-            Book Now
+            Explore
           </button>
           </Link>
         </div>
