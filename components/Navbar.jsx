@@ -1,18 +1,60 @@
-import React from "react";
 import Link from "next/link";
-export default function Navbar({ login, signup }) {
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+
+const Navbar = () => {
+  const [pathname, setPathname] = useState("/");
+
+  const path = useRouter().asPath;
+
+  useEffect(() => {
+    setPathname(path);
+  }, [path]);
+
+  if (path.startsWith("/admin")) return;
+
   return (
-    <div className="flex text-slate-300 justify-between items-center">
-      <div className="ml-4 m-2 p-2">
-        <h3 className=" text-black ">Tripez</h3>
-      </div>
-      <div className="m-2 p-2 mr-4">
-        {login && (
-          <button className="border-black border-0 rounded-lg p-2  transition-all px-6 text-sm text-black shadow-2xl bg-slate-400">
-            <Link href="/auth/login">Login</Link>
-          </button>
-        )}
-      </div>
-    </div>
+    <>
+      <nav className="flex max-md:flex-col max-w-6xl m-auto justify-between p-10 ">
+        <div className="max-md:text-center max-md:my-5">
+          <Link href="/">
+            <h2 className="text-[28px] font-medium">Tripez</h2>
+          </Link>
+        </div>
+        <div className="flex gap-8 justify-center items-center">
+          <Link href="/">
+            <p
+              className={`font-medium  text-lg ${
+                pathname == "/" ? "text-primary" : "text-secondary"
+              } hover:text-primary`}
+            >
+              Home
+            </p>
+          </Link>
+          <Link href="/about">
+            <p
+              className={`font-medium  text-lg ${
+                pathname == "/about" ? "text-primary" : "text-secondary"
+              } hover:text-primary`}
+            >
+              About
+            </p>
+          </Link>
+          <Link href="/trips">
+            <p
+              className={`font-medium  text-lg ${
+                pathname.startsWith("/trips")
+                  ? "text-primary"
+                  : "text-secondary"
+              } hover:text-primary`}
+            >
+              Trips
+            </p>
+          </Link>
+        </div>
+      </nav>
+    </>
   );
-}
+};
+
+export default Navbar;

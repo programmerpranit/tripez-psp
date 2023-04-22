@@ -3,6 +3,8 @@ import "../styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import Head from "next/head";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 function MyApp({ Component, pageProps }) {
   axios.interceptors.request.use(
@@ -23,8 +25,11 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>Tripez</title>
       </Head>
+      
       <ToastContainer />
+      <Navbar/>
       <Component {...pageProps} />
+      <Footer/>
     </>
   );
 }
