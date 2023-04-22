@@ -6,7 +6,7 @@ import Typewriter from "typewriter-effect";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import LandingPage from '@/components/Landingpage'
+import LandingPage from "@/components/Landingpage";
 import Link from "next/link";
 const data = [
   {
@@ -27,15 +27,9 @@ const data = [
 ];
 
 export default function Home() {
-  
-
   return (
     <>
-      <div className="flex min-h-screen justify-between flex-col">
-
-        <LandingPage />
-        
-      </div>
+      <LandingPage />
     </>
   );
 }
