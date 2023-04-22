@@ -25,7 +25,7 @@ const TripSchema = new mongoose.Schema(
       },
     ],
     featuredImage: { type: String, required: true },
-    images: [{ type: String, required: true }],
+    images: [{ type: String }],
   },
   { timestamps: true }
 );

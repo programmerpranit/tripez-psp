@@ -22,15 +22,14 @@ const data = [
 
 export default function index() {
   return (
-    <div className="flex flex-col bg-[url('/parisBg.jpg')] bg-cover  h-screen justify-between ">
+    <div className="flex flex-col  bg-cover  h-screen justify-between ">
       <div className="text-black">
         <Navbar />
       </div>
 
       <div className="justify-center flex m-2 p-2">
         <button className="border-black border-0 rounded-md p-2 text-black shadow-2xl bg-slate-200">
-          {" "}
-          <Link href="/auth/login">New Trip</Link>
+          <Link href="">New Trip</Link>
         </button>
       </div>
 

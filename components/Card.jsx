@@ -14,7 +14,7 @@ export default function Card( props ) {
             {props.description}
           </p>
           <button className="bg-white p-2 rounded-md text-black hover:bg-gray-300 cursor-pointer mt-2 font-semibold">
-            Book Now
+            Explore
           </button>
         </div>
       </div>
