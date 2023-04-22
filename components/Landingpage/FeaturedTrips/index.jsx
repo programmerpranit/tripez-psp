@@ -27,6 +27,7 @@ export default function index() {
         {data.map((item) => {
           return (
             <TripCard
+            key={item}
               img={item.img}
               title={item.title}
               desc={item.description}
