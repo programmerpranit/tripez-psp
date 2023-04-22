@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 export default function Trip() {
   return (
-    <div>
-      
-    </div>
-  )
+    <>
+     <div className="min-h-screen"></div>
+    </>
+  );
 }

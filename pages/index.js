@@ -32,24 +32,10 @@ export default function Home() {
   return (
     <>
       <div className="flex min-h-screen justify-between flex-col">
-        <Navbar login={true} />
+
         <LandingPage />
-        <Footer />
+        
       </div>
     </>
   );
-}
-{
-  /* <div className="flex items-center justify-center">
-{data.map((item) => {
-  return (
-    <Card
-      title={item.title}
-      description={item.description}
-      url={item.img}
-    />
-  );
-})}
-</div>
-<Footer /> */
 }
