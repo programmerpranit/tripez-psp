@@ -1,7 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 
-export default function Card( props ) {
+export default function Card( {image} ) {
   return (
+    <>
     <div className="w-[20%] h-[80%] m-5">
       <div className="flex h-full w-full flex-col shadow-lg rounded-lg justify-end relative overflow-hidden">
         <img
@@ -23,5 +25,7 @@ export default function Card( props ) {
         </div>
       </div>
     </div>
+    </>
+    
   );
 }
