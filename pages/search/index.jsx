@@ -12,7 +12,8 @@ const SearchPage = ({ trips }) => {
   const [maximum, setMaximum] = useState("");
 
   const router = useRouter();
-
+  console.log("dfgdf")
+  console.log(trips)
   const handleSearch = (e) => {
     e.preventDefault();
 
@@ -74,6 +75,7 @@ const SearchPage = ({ trips }) => {
             <SearchCard/>
             <SearchCard/>
             <SearchCard/>
+
             {trips &&
               trips.map((trip) => (
                 <SearchCard
