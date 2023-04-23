@@ -124,6 +124,17 @@ export async function getServerSideProps(context) {
     await dbConnect();
     const tripData = await Trip.find({ $text: { $search: slug } }).limit(20);
 
+    // Trip.aggregate([
+    //   {
+    //     $lookup: {
+    //       from: "Partner",
+    //       localField: "host",
+    //       foreignField: "_id",
+    //       as: "triphost",
+    //     },
+    //   },
+    // ]);
+
     const tripsList = JSON.parse(JSON.stringify(tripData));
     return {
       props: { tripsList },
