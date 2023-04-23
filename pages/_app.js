@@ -25,11 +25,11 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>Tripez</title>
       </Head>
-      
+
       <ToastContainer />
-      <Navbar/>
+      <Navbar />
       <Component {...pageProps} />
-      <Footer/>
+      <Footer />
     </>
   );
 }
