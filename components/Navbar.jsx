@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -51,16 +52,13 @@ const Navbar = () => {
               Trips
             </p>
           </Link>
-          <Link href="/auth/login">
-            <p
-              className={`font-medium  text-lg ${
-                pathname.startsWith("/auth/login")
-                  ? "text-primary"
-                  : "text-secondary"
-              } hover:text-primary`}
-            >
-              Login
-            </p>
+          <Link href="/search">
+            <Image
+              src="/SearchIcon.svg"
+              width="25"
+              height="25"
+              alt=""
+            />
           </Link>
         </div>
       </nav>

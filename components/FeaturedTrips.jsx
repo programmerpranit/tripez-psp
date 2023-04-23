@@ -22,7 +22,7 @@ export default function FeaturedTrips() {
   return (
     <>
       <h2 className="text-center ">Featured Trips</h2>
-      <div className="flex flex-col shadow-black m-4 rounded-lg  pb-4 space-y-4 md:flex-row md:space-x-5 items-center justify-center">
+      <div className="flex flex-col shadow-black m-4 rounded-lg pb-4 md:flex-row  items-center justify-center">
         {data.map((item) => {
           return (
             <TripCard
