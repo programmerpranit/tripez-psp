@@ -51,6 +51,17 @@ const Navbar = () => {
               Trips
             </p>
           </Link>
+          <Link href="/auth/login">
+            <p
+              className={`font-medium  text-lg ${
+                pathname.startsWith("/auth/login")
+                  ? "text-primary"
+                  : "text-secondary"
+              } hover:text-primary`}
+            >
+              Login
+            </p>
+          </Link>
         </div>
       </nav>
     </>

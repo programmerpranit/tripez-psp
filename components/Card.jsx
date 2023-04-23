@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Card( {image} ) {
+export default function Card( props ) {
   return (
     <>
     <div className="w-[20%] h-[80%] m-5">

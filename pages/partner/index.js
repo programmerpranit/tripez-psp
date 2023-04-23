@@ -2,6 +2,7 @@ import Footer from "@/components/Footer";
 import Card from "@/components/Card";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import TripCard from "@/components/TripCard";
 const data = [
   {
     title: "The Himalayas",
@@ -22,14 +23,12 @@ const data = [
 
 export default function index() {
   return (
-    <div className="flex flex-col  bg-cover  h-screen justify-between ">
-      <div className="text-black">
-        <Navbar />
-      </div>
+    <div className="flex flex-col">
+      
 
       <div className="justify-center flex m-2 p-2">
         <button className="border-black border-0 rounded-md p-2 text-black shadow-2xl bg-slate-200">
-          <Link href="">New Trip</Link>
+          <Link href="/partner/trips">New Trip</Link>
         </button>
       </div>
 
@@ -37,7 +36,7 @@ export default function index() {
         <div className="flex flex-row items-center justify-center">
           {data.map((item) => {
             return (
-              <Card
+              <TripCard
                 title={item.title}
                 description={item.description}
                 url={item.img}
@@ -46,7 +45,6 @@ export default function index() {
           })}
         </div>
       </main>
-      <Footer />
     </div>
   );
 }
