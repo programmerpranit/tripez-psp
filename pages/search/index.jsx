@@ -71,19 +71,15 @@ const SearchPage = ({ trips }) => {
 
           <div className="md:w-3/4 mx-auto px-10 space-y-6">
 
-            <SearchCard/>
-            <SearchCard/>
-            <SearchCard/>
-            <SearchCard/>
-
             {trips &&
               trips.map((trip) => (
                 <SearchCard
                   key={trip._id}
                   image={trip.featuredImage}
-                  title={trip.title}
+                  title={trip.name}
                   description={trip.description}
-                  price={trip.price}
+                  price={trip.amount}
+                  slug={`/trips/${trip.slug}`}
                 />
               ))}
 

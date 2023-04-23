@@ -45,6 +45,7 @@ const Search = ({ tripsList }) => {
   useEffect(() => {
     if (!router.isReady) return;
     setSearch(router.query.slug);
+    // console.log(tripsList);
   }, [router]);
 
   return (
@@ -97,12 +98,16 @@ const Search = ({ tripsList }) => {
           </div>
           {trips && trips.length != 0 && (
             <div className="md:w-3/4 px-10 space-y-6">
-              <SearchCard />
-              <SearchCard />
-              <SearchCard />
-              <SearchCard />
-              <SearchCard />
-              <SearchCard />
+              {trips.map((trip) => (
+                <SearchCard
+                  key={trip._id}
+                  title={trip.name}
+                  image={trip.featuredImage}
+                  description={trip.description}
+                  price={trip.amount}
+                  slug={`/trips/${trip.slug}`}
+                />
+              ))}
             </div>
           )}
 
@@ -123,8 +128,8 @@ export async function getServerSideProps(context) {
   try {
     await dbConnect();
     const tripData = await Trip.find({ $text: { $search: slug } }).limit(20);
-
-    // Trip.aggregate([
+    console.log(tripData);
+    // const tripData = await Trip.aggregate([
     //   {
     //     $lookup: {
     //       from: "Partner",
