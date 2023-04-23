@@ -48,7 +48,7 @@ const SearchPage = ({ trips }) => {
         </form>
 
         <div className="flex">
-          <div className="md:w-1/4 border-gray-200 border p-5 bg-gray-100 space-y-4 max-h-[50vh]">
+          {/* <div className="md:w-1/4 border-gray-200 border p-5 bg-gray-100 space-y-4 max-h-[50vh]">
             <h3>Budget</h3>
             <input
               type="number"
@@ -66,9 +66,14 @@ const SearchPage = ({ trips }) => {
             />
 
             <button className="bg-blue-500 text-white w-full">Filter</button>
-          </div>
+          </div> */}
 
-          <div className="md:w-3/4 px-10 space-y-6">
+          <div className="md:w-3/4 mx-auto px-10 space-y-6">
+
+            <SearchCard/>
+            <SearchCard/>
+            <SearchCard/>
+            <SearchCard/>
             {trips &&
               trips.map((trip) => (
                 <SearchCard
