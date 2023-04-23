@@ -1,4 +1,3 @@
-import { verifyPartner } from "@/middleware/verifyToken";
 import dbConnect from "@/middleware/mongoose";
 import Trip from "@/models/Trip";
 
@@ -8,22 +7,25 @@ const handler = async (req, res) => {
 
   if (req.method == "GET") {
     try {
-      // Get the query params and add pagination and sorting
+      const { id } = req.query;
 
       await dbConnect();
 
-      const trips = Trip.find({}).limit(20);
+      const trip = Trip.findOne({ slug: id });
 
       return res
         .status(200)
-        .json({ message: "Tripes Fetched Successfully", trips });
+        .json({ message: "Trip Fetched Successfully", trip });
     } catch (error) {
       console.log(error);
       return res.status(500).json({ message: "Unkown Error Occured" });
     }
-  }
-  if (req.method == "POST") {
+  } else if (req.method == "PUT") {
     try {
+      const { id } = req.query;
+
+      await dbConnect();
+
       const {
         name,
         slug,
@@ -32,14 +34,14 @@ const handler = async (req, res) => {
         days,
         nights,
         amount,
+        highlights,
+        features,
+        faq,
         featuredImage,
+        images,
       } = req.body;
 
-      const host = partner.partner._id;
-
-      await dbConnect();
-
-      const trip = await Trip.create({
+      const trip = await Trip.findByIdAndUpdate(id, {
         host,
         name,
         slug,
@@ -51,9 +53,7 @@ const handler = async (req, res) => {
         featuredImage,
       });
 
-      return res
-        .status(201)
-        .json({ message: "Trip Created Successfully", trip });
+      return res.status(200).json({ message: "Trip Updated Successfully" });
     } catch (error) {
       console.log(error);
       return res.status(500).json({ message: "Unkown Error Occured" });
