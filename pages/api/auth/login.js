@@ -37,10 +37,13 @@ const handler = async (req, res) => {
           .status(200)
           .json({ message: "Successfully Logged In", token });
       } else {
-        return res.status(401).json({ message: "wrong password" });
+        return res.status(401).json({ message: "Failed to login" });
       }
     } catch (error) {
       console.log(error);
+      if(error.code == 11000) {
+        return res.status(400).json({ message: "Email already Exists" });
+      }
       return res.status(500).json({ message: "Unkown Error Occured" });
     }
   } else {

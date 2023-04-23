@@ -22,10 +22,10 @@ export default function SearchCard({image, title, description, price}) {
           </p>
           <div className="flex pt-5 justify-between">
 
-          <Link href={"/"}>
-            <p>Read More</p>
+          <Link href={"/trips/slug"}>
+            <p className="hover:text-primary">Read More</p>
           </Link>
-          <h4>5000/-</h4>
+          <p>Starting From <span className="text-xl"> 5000/-</span></p>
           </div>
         </div>
       </div>

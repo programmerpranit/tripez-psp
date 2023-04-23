@@ -5,11 +5,16 @@ import SearchCard from "@/components/SearchCard";
 import { useRouter } from "next/router";
 import dbConnect from "@/middleware/mongoose";
 import Trip from "@/models/Trip";
+import { BASE_URL } from "@/utils/config";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-const Search = ({ trips }) => {
+const Search = ({ tripsList }) => {
   const [search, setSearch] = useState("");
   const [minimum, setMinimum] = useState("");
   const [maximum, setMaximum] = useState("");
+
+  const [trips, setTrips] = useState(tripsList);
 
   const router = useRouter();
 
@@ -19,6 +24,22 @@ const Search = ({ trips }) => {
     if (search.length == 0) return;
 
     router.push(`/search/${search}`);
+  };
+
+  const filter = async () => {
+    try {
+      const url = `${BASE_URL}/api/trip`;
+      const res = await axios.get(url, {
+        params: {
+          search: search,
+          min: minimum,
+          max: maximum,
+        },
+      });
+      setTrips(res.data.trips);
+    } catch (error) {
+      toast.error("Failed to fetch the trips");
+    }
   };
 
   useEffect(() => {
@@ -60,19 +81,21 @@ const Search = ({ trips }) => {
               placeholder="Min"
               value={minimum}
               onChange={(e) => setMinimum(e.target.value)}
-              className="bg-transparent w-full text-black border-black border-2 rounded-md px-3 py-2"
+              className="bg-transparent w-full text-black border-secondary border-2 rounded-md px-3 py-2"
             />
             <input
               type="number"
               placeholder="Max"
               value={maximum}
               onChange={(e) => setMaximum(e.target.value)}
-              className="bg-transparent w-full text-black border-black border-2 rounded-md px-3 py-2"
+              className="bg-transparent w-full text-black border-secondary border-2 rounded-md px-3 py-2"
             />
 
-            <button className="bg-blue-500 text-white w-full">Filter</button>
+            <button onClick={filter} className="bg-blue-500 text-white w-full">
+              Filter
+            </button>
           </div>
-          {(trips && trips.length != 0) && (
+          {trips && trips.length != 0 && (
             <div className="md:w-3/4 px-10 space-y-6">
               <SearchCard />
               <SearchCard />
@@ -100,15 +123,15 @@ export async function getServerSideProps(context) {
   try {
     await dbConnect();
     const tripData = await Trip.find({ $text: { $search: slug } }).limit(20);
-    
-    const trips = JSON.parse(JSON.stringify(tripData));
+
+    const tripsList = JSON.parse(JSON.stringify(tripData));
     return {
-      props: { trips },
+      props: { tripsList },
     };
   } catch (error) {
     console.log(error);
     return {
-      props: { trips: null },
+      props: { tripsList: null },
     };
   }
 }
