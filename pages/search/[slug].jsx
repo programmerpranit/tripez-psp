@@ -43,6 +43,11 @@ const Search = ({ tripsList }) => {
   };
 
   useEffect(() => {
+    setTrips(tripsList);
+  }, [tripsList])
+  
+
+  useEffect(() => {
     if (!router.isReady) return;
     setSearch(router.query.slug);
     // console.log(tripsList);
