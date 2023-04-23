@@ -54,10 +54,10 @@ p {
 }
 
 button {
-  padding-inline: 40px;
+  padding-inline: 20px;
   border: solid 0px transparent;
-  border-radius: 10px;
-  line-height: 30px;
+  border-radius: 5px;
+  line-height: 40px;
   color: white;
   letter-spacing: 0.1em;
 }

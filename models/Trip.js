@@ -30,6 +30,8 @@ const TripSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+TripSchema.index({ name: 'text', description: 'text' })
+
 mongoose.models = {};
 
 export default mongoose.model("Trip", TripSchema);

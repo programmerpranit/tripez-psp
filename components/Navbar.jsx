@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -50,6 +51,14 @@ const Navbar = () => {
             >
               Trips
             </p>
+          </Link>
+          <Link href="/search">
+            <Image
+              src="/SearchIcon.svg"
+              width="25"
+              height="25"
+              alt=""
+            />
           </Link>
         </div>
       </nav>
