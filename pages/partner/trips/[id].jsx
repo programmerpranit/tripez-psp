@@ -34,7 +34,7 @@ const AddTrip = ({ tripObj }) => {
         days: trip.days,
         nights: trip.nights,
         amount: trip.amount,
-        featuredImage: trip.featuredImage,
+        featuredImage: "/himalaya.jpg",
       };
 
       const res = await axios.post(url, data);
@@ -59,7 +59,7 @@ const AddTrip = ({ tripObj }) => {
         days: trip.days,
         nights: trip.nights,
         amount: trip.amount,
-        featuredImage: trip.featuredImage,
+        featuredImage: "/himalaya.jpg",
       };
 
       const res = await axios.post(url, data);
