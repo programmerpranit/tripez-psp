@@ -2,7 +2,7 @@ import { useState, React } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function SearchCard({ image, title, description, price, slug }) {
+export default function SearchCard({ image, title, description, price, slug, tripId }) {
   console.log(slug);
   return (
     <>
@@ -15,7 +15,10 @@ export default function SearchCard({ image, title, description, price, slug }) {
           className="rounded-md object-cover"
         />
         <div className=" flex flex-col p-5 w-2/3">
+          
           <h3>{title}</h3>
+
+          
           <p>{description}</p>
           <div className="flex-1"></div>
           <div className="flex pt-5 justify-between">

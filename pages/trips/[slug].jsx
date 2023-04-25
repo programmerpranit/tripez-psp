@@ -1,10 +1,59 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import dbConnect from "@/middleware/mongoose";
 import Trip from "@/models/Trip";
+import axios from "axios";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function TripDetail({ trip }) {
+  const [enquiry, setEnquiry] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    dateOfTravel: "",
+    travellerCount: "",
+    message: "",
+  });
+  const handleChange = (event) => {
+    setEnquiry({
+      ...enquiry,
+      [event.target.name]: event.target.value,
+    });
+  };
+  const handleSubmit = async () => {
+    const url = "http://localhost:3000/api/enquiry";
+    
+     const data ={
+      trip: trip.slug,
+      host: trip.host,
+      name: enquiry.name,
+      email: enquiry.email,
+      phoneNo:enquiry.phone,
+      dateOfTravel: enquiry.dateOfTravel,
+      travellerCount: enquiry.travellerCount,
+      message: enquiry.message
+  }
+
+    try {
+      const response = axios.post(url, data);
+      setEnquiry({
+        name: "",
+        email: "",
+        phone: "",
+        dateOfTravel: "",
+        travellerCount: "",
+        message: "",
+      });
+      console.log(response)
+      toast("enquiry sent")
+    } catch (error) {
+      console.log(error)
+    }
+    
+  };
   return (
     <>
       <div className="flex max-md:flex-col max-w-6xl h-fit m-auto">
@@ -41,6 +90,85 @@ export default function TripDetail({ trip }) {
             {trip.nights != 0 && (
               <p className="font-semibold ">Nights : {trip.nights}</p>
             )}
+          </div>
+          <div className="flex flex-col p-2 m-2">
+            <h2>Enquiry Form</h2>
+            <div className="w-full">
+              <p>Full Name</p>
+              <input
+                type="text"
+                placeholder="Full Name"
+                value={enquiry.name}
+                name="name"
+                onChange={handleChange}
+                className=" px-3 p-2 my-2 w-full rounded border outline-none"
+              />
+            </div>
+            <div className="w-full">
+              <p>Email</p>
+              <input
+                name="email"
+                type="email"
+                placeholder="Email"
+                onChange={handleChange}
+                value={enquiry.email}
+                className=" px-3 p-2 my-2 w-full rounded border outline-none"
+              />
+            </div>
+            <div className="w-full">
+              <p>Phone No</p>
+              <input
+                name="phone"
+                type="number"
+                placeholder="Phone No"
+                onChange={handleChange}
+                value={enquiry.phone}
+                className=" px-3 p-2 my-2 w-full rounded border outline-none"
+              />
+            </div>
+            <div className="w-full">
+              <p>Date of Travel</p>
+              <input
+                name="dateOfTravel"
+                type="number"
+                value={enquiry.dateOfTravel}
+                placeholder="Eg: 12-04-2023 "
+                onChange={handleChange}
+                className=" px-3 p-2 my-2 w-full rounded border outline-none"
+              />
+            </div>
+            <div className="w-full">
+              <p>Traveller Count</p>
+              <input
+                type="number"
+                name="travellerCount"
+                min={1}
+                value={enquiry.travellerCount}
+                placeholder="Traveller Count"
+                onChange={handleChange}
+                className=" px-3 p-2 my-2 w-full rounded border outline-none"
+              />
+            </div>
+            <div className="pr-5">
+              <p>Message</p>
+              <textarea
+                name="message"
+                value={enquiry.message}
+                onChange={handleChange}
+                className=" w-full leading-normal my-2 p-2 border mr-5 resize-none outline-none "
+                placeholder="Give Message"
+              ></textarea>
+            </div>
+          </div>
+          <div className="flex items-center justify-center">
+            <button
+              onClick={handleSubmit}
+              className="border-2 p-1 m-1 border-black px-4 text-black"
+            >
+              
+              send
+            </button>
+            <ToastContainer />
           </div>
           {/* <div className="p-5 my-5  bg-blue-50">
             <p className="lowercase">TAX APPLICABLE ON THE RATE CARD</p> <br />
