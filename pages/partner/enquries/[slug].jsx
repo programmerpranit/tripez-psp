@@ -13,7 +13,7 @@ const Enquires = ({ enquirys }) => {
     <div className="flex flex-col items-center justify-center">
       <h3>Enquiries of  {slug} </h3>
     {enquirys?.map((enquiry) => (
-        <div className="flex flex-col border-2 border-black w-1/2 rounded-lg p-4 m-4">
+        <div key={enquiry._id} className="flex flex-col border-2 border-black w-1/2 rounded-lg p-4 m-4">
           <div>
             <h5>Name: {enquiry.name}</h5>
             <h5>Email ID: {enquiry.email}</h5>
