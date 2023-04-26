@@ -34,7 +34,7 @@ const AddTrip = ({ tripObj }) => {
         days: trip.days,
         nights: trip.nights,
         amount: trip.amount,
-        featuredImage: "/himalaya.jpg",
+        featuredImage: trip.featuredImage,
       };
 
       const res = await axios.post(url, data);
@@ -59,10 +59,10 @@ const AddTrip = ({ tripObj }) => {
         days: trip.days,
         nights: trip.nights,
         amount: trip.amount,
-        featuredImage: "/himalaya.jpg",
+        featuredImage: trip.featuredImage,
       };
 
-      const res = await axios.post(url, data);
+      const res = await axios.put(url, data);
       toast.success("Trip Saved Sucessfully");
     } catch (error) {
       console.log(error);

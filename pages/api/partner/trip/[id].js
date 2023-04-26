@@ -1,4 +1,5 @@
 import dbConnect from "@/middleware/mongoose";
+import { verifyPartner } from "@/middleware/verifyToken";
 import Trip from "@/models/Trip";
 
 const handler = async (req, res) => {
@@ -42,7 +43,7 @@ const handler = async (req, res) => {
       } = req.body;
 
       const trip = await Trip.findByIdAndUpdate(id, {
-        host,
+       
         name,
         slug,
         description,

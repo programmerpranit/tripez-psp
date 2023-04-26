@@ -2,7 +2,7 @@ import { useState, React } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function SearchCard({ image, title, description, price, slug, tripId }) {
+export default function SearchCard({ image, title, description, price, slug, cta }) {
   console.log(slug);
   return (
     <>
@@ -23,7 +23,7 @@ export default function SearchCard({ image, title, description, price, slug, tri
           <div className="flex-1"></div>
           <div className="flex pt-5 justify-between">
             <Link href={slug}>
-              <p className="hover:text-primary">Read More</p>
+              <p className="hover:text-primary">{cta ? cta : "Read More"}</p>
             </Link>
             <p>
               Starting From <span className="text-xl"> {price}/-</span>
