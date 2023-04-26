@@ -48,7 +48,7 @@ export default function TripDetail({ trip }) {
         message: "",
       });
       console.log(response)
-      toast("enquiry sent")
+      toast.success("enquiry sent")
     } catch (error) {
       console.log(error)
     }
@@ -130,7 +130,7 @@ export default function TripDetail({ trip }) {
               <p>Date of Travel</p>
               <input
                 name="dateOfTravel"
-                type="number"
+                type="date"
                 value={enquiry.dateOfTravel}
                 placeholder="Eg: 12-04-2023 "
                 onChange={handleChange}
@@ -168,7 +168,6 @@ export default function TripDetail({ trip }) {
               
               send
             </button>
-            <ToastContainer />
           </div>
           {/* <div className="p-5 my-5  bg-blue-50">
             <p className="lowercase">TAX APPLICABLE ON THE RATE CARD</p> <br />
